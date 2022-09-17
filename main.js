@@ -14,10 +14,10 @@ let camera, scene, renderer, control, loader, mixer, mixer2, mixer3, audio;
 // const first = new THREE.FirstPerson
 
 scene = new THREE.Scene()
-camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2300)
+camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 2300)
 renderer = new THREE.WebGL1Renderer({ powerPreference: 'high-performance' })
 renderer.setSize(window.innerWidth, window.innerHeight)
-renderer.setPixelRatio(window.devicePixelRatio * 0.9)
+renderer.setPixelRatio(window.devicePixelRatio)
 renderer.outputEncoding = THREE.sRGBEncoding
 renderer.toneMapping = THREE.ACESFilmicToneMapping
 renderer.toneMappingExposure = 1
@@ -244,7 +244,10 @@ loadModel('/model/car_roof/scene.glb', 10, -200, 1500, 200, 200, 150, -Math.PI)
 loadModel('/model/car/scene.gltf', 50, -300, 1900, 100, 100, 100, Math.PI)
 loadModel('/model/building/scene.gltf', 1000, -300, -100, 0.4, 0.4, 0.1, Math.PI / 2)
 loadModel('/model/store/scene.gltf', 0, -60, -1500, 0.7, 0.7, 0.7, - Math.PI)
-loadModel('/model/chen/scene.gltf', 50, 40, 20, 40, 40, 40, -Math.PI / 14)
+
+// loadModel('/model/chen/scene.gltf', 50, 40, 20, 40, 40, 40, -Math.PI / 14)
+loadModel('/model/lady2/scene.gltf', 53, 0, 20, 0.42, 0.42, 0.42, - Math.PI / 2.2)
+
 loadModel('/model/guard/scene.gltf', -250, 54, 10, 60, 60, 60, Math.PI / 2)
 loadModel('/model/guard/scene.gltf', 250, 55, 10, 60, 60, 60, -Math.PI / 2)
 loadModel('/model/sky/scene.gltf', -700, 20, -900, 80, 80, 80, - Math.PI / 2)
