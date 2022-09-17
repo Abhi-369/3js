@@ -1,0 +1,11 @@
+Model Information:
+* title:	Jonny Frost (Jim Parrack)
+* source:	https://sketchfab.com/3d-models/jonny-frost-jim-parrack-e6d3dba923fd43ddbe30418b301d110e
+* author:	DavidA3D (https://sketchfab.com/DavidA3D)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Jonny Frost (Jim Parrack)" (https://sketchfab.com/3d-models/jonny-frost-jim-parrack-e6d3dba923fd43ddbe30418b301d110e) by DavidA3D (https://sketchfab.com/DavidA3D) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

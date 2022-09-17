@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel='stylesheet' href="style.css">
+</head>
+
+<body>
+
+    <video src="video/business.webm" id="vid" controls loop autoplay muted></video>
+    <video src="video/info.mp4" id="vid__2" controls loop autoplay muted></video>
+    <video src="video/screen2.webm" id="vid__3" controls loop autoplay muted></video>
+    <video src="video/corporate.webm" id="vid__4" controls loop autoplay muted></video>
+    <video src="video/screen3.webm" id="vid__5" controls loop autoplay muted></video>
+                
+    <div class="progress-bar-container">
+        <label for="progress-bar">Loading...</label>
+        <progress id="progress-bar" val="0" max="100"></progress>
+    </div> 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.144.0/three.min.js"
+        integrity="sha512-a+99cBAt+ou5bThiz5wJeuvXSrZVqZctMU5L8MWaLEc3PB+DPWMK3UycRong0zWYyhavY8HT0YyB/jtJD1S/yQ=="
+        crossorigin="anonymous" 
+        referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/RGBELoader.js"></script>
+    <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/OrbitControls.js"></script>
+
+    <script src="main.js" type="module"></script>
+</body>
+
+</html>
