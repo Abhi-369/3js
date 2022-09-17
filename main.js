@@ -18,7 +18,7 @@ camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight,
 // renderer = new THREE.WebGL1Renderer({ antialias: true })
 renderer = new THREE.WebGL1Renderer()
 renderer.setSize(window.innerWidth, window.innerHeight)
-renderer.setPixelRatio(window.devicePixelRatio * 0.5)
+renderer.setPixelRatio(window.devicePixelRatio)
 renderer.outputEncoding = THREE.sRGBEncoding
 renderer.toneMapping = THREE.ACESFilmicToneMapping
 renderer.toneMappingExposure = 1
