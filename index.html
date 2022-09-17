@@ -11,12 +11,12 @@
 
 <body>
 
-    <video src="video/business.webm" id="vid" controls loop autoplay muted></video>
-    <video src="video/info.mp4" id="vid__2" controls loop autoplay muted></video>
-    <video src="video/screen2.webm" id="vid__3" controls loop autoplay muted></video>
-    <video src="video/corporate.webm" id="vid__4" controls loop autoplay muted></video>
-    <video src="video/screen3.webm" id="vid__5" controls loop autoplay muted></video>
-                
+    <video src="video/business.webm" id="vid" controls loop autoplay muted preload="none"></video>
+    <video src="video/info.mp4" id="vid__2" controls loop autoplay muted preload="none"></video>
+    <video src="video/screen2.webm" id="vid__3" controls loop autoplay muted preload="none"></video>
+    <video src="video/corporate.webm" id="vid__4" controls loop autoplay muted preload="none"></video>
+    <video src="video/screen3.webm" id="vid__5" controls loop autoplay muted preload="none"></video>
+
     <div class="progress-bar-container">
         <label for="progress-bar">Loading...</label>
         <progress id="progress-bar" val="0" max="100"></progress>
@@ -29,8 +29,8 @@
     <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/RGBELoader.js"></script>
     <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/OrbitControls.js"></script>
-
     <script src="main.js" type="module"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/7/Stats.min.js" integrity="sha512-ey3wf3z1WUgQ6/XU/lV1UVQkbCpWsyQANkBst88XXWHok9fXKp55G365lLhScYihGpkzhiZz75r+8isUSCKRIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 </body>
 
 </html>

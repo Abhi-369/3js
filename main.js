@@ -5,18 +5,17 @@
 // import { RectAreaLightHelper } from 'three/examples/jsm/helpers/RectAreaLightHelper'
 // import * as dat from 'dat.gui';
 // import { RectAreaLightHelper } from 'three/examples/jsm/helpers/RectAreaLightHelper'
+// import * as Stats from 'three/examples/jsm/helpers/Stats'
 
-let camera, scene, renderer, control, loader, mixer, mixer2, mixer3, audio, office;
+let camera, scene, renderer, control, loader, mixer, mixer2, mixer3, audio;
 
 // const gui = new dat.GUI();
 
 // const first = new THREE.FirstPerson
 
-
 scene = new THREE.Scene()
-camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000)
-// renderer = new THREE.WebGL1Renderer({ antialias: true })
-renderer = new THREE.WebGL1Renderer()
+camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2300)
+renderer = new THREE.WebGL1Renderer({ antialias: true, powerPreference: 'high-performance' })
 renderer.setSize(window.innerWidth, window.innerHeight)
 renderer.setPixelRatio(window.devicePixelRatio)
 renderer.outputEncoding = THREE.sRGBEncoding
@@ -29,28 +28,30 @@ camera.position.set(0, 300, 500)
 control = new THREE.OrbitControls(camera, renderer.domElement)
 control.maxPolarAngle = Math.PI / 2
 control.minDistance = 100
-control.maxDistance = 300
+control.maxDistance = 310
 control.autoRotate = true
 control.enableDamping = true
 control.dampingFactor = 0.5
-control.autoRotateSpeed = 2
+control.autoRotateSpeed = 1
 
-const box = new THREE.BoxGeometry(10, 10, 0.1)
-const material = new THREE.MeshBasicMaterial({ color: 0x001913, side: THREE.DoubleSide })
-const mesh = new THREE.Mesh(box, material)
-mesh.rotation.x = Math.PI / 2
+control.addEventListener("change", () => renderer.render(scene, camera));
 
-const box2 = new THREE.BoxGeometry(100, 5, 0.1)
-const material2 = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide })
-const mesh2 = new THREE.Mesh(box2, material2)
-mesh2.rotation.x = Math.PI / 2
-mesh2.position.set(0, 0, 8)
+// const box = new THREE.BoxBufferGeometry(10, 10, 0.1)
+// const material = new THREE.MeshBasicMaterial({ color: 0x001913, side: THREE.DoubleSide })
+// const mesh = new THREE.Mesh(box, material)
+// mesh.rotation.x = Math.PI / 2
+
+// const box2 = new THREE.BoxBufferGeometry(100, 5, 0.1)
+// const material2 = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide })
+// const mesh2 = new THREE.Mesh(box2, material2)
+// mesh2.rotation.x = Math.PI / 2
+// mesh2.position.set(0, 0, 8)
 
 const txt = new THREE.TextureLoader()
 const txtload = txt.load('/img/texture.jpg')
 
-const plane_2 = new THREE.BoxGeometry(670, 670, 5)
-const material_2 = new THREE.MeshBasicMaterial({ color: 0xf7f7f7, map: txtload })
+const plane_2 = new THREE.BoxBufferGeometry(670, 670, 5)
+const material_2 = new THREE.MeshBasicMaterial({ color: 0xD5CEE4, map: txtload })
 const box_2 = new THREE.Mesh(plane_2, material_2)
 box_2.position.set(0, -3, -20)
 box_2.rotateX(-Math.PI / 2)
@@ -103,18 +104,10 @@ manager.onError = function (url) {
 
 loader = new THREE.GLTFLoader(manager)
 
-function loadModel(path, px, py, pz, sx, sy, sz, rotate, office) {
+function loadModel(path, px, py, pz, sx, sy, sz, rotate) {
   loader.load(path, function (gltf) {
     const model = gltf.scene
     scene.add(model)
-
-    if (office) {
-      console.log("model", model)
-      // const mesh = model.getObjectByName("Plane001")
-      // mesh.scale.set(0, 0, 0)
-      // mesh.scale.set(1, 1, 1)
-      // console.log("mesh", mesh)
-    }
 
     if (px || py || pz || sx || sy || sz) {
       model.position.set(px, py, pz)
@@ -125,7 +118,7 @@ function loadModel(path, px, py, pz, sx, sy, sz, rotate, office) {
     }
 
   }, function xhr() {
-    console.log((xhr.loaded / xhr.total * 100) + '% loaded')
+    // console.log((xhr.loaded / xhr.total * 100) + '% loaded')
   }, function (error) {
     console.log("err", error)
   })
@@ -152,7 +145,7 @@ loader.load('/model/talk/scene.gltf', function (gltf) {
   action.play()
 
 }, function xhr() {
-  console.log((xhr.loaded / xhr.total * 100) + '% loaded')
+  // console.log((xhr.loaded / xhr.total * 100) + '% loaded')
 }, function (error) {
   console.log("err", error)
 })
@@ -180,7 +173,7 @@ loader.load('/model/rida/scene.gltf', function (gltf) {
   action.play()
 
 }, function xhr() {
-  console.log((xhr.loaded / xhr.total * 100) + '% loaded')
+  // console.log((xhr.loaded / xhr.total * 100) + '% loaded')
 }, function (error) {
   console.log("err", error)
 })
@@ -215,7 +208,7 @@ loader.load('/model/business_2/scene.gltf', function (gltf) {
   action.play()
 
 }, function xhr() {
-  console.log((xhr.loaded / xhr.total * 100) + '% loaded')
+  // console.log((xhr.loaded / xhr.total * 100) + '% loaded')
 }, function (error) {
   console.log("err", error)
 })
@@ -246,10 +239,10 @@ const helper = new THREE.PointLightHelper(customPoint3, 100)
 // gui.add(customPoint3.position, 'z')
 // gui.add(customPoint3, 'intensity')
 
-loadModel('/model/office/scene.glb', 0, 0, 0, 1, 1, 1, 0, office = true)
+loadModel('/model/office/scene.glb', 0, 0, 0, 1, 1, 1, 0)
 loadModel('/model/car_roof/scene.glb', 10, -200, 1500, 200, 200, 150, -Math.PI)
 loadModel('/model/car/scene.gltf', 50, -300, 1900, 100, 100, 100, Math.PI)
-loadModel('/model/building/scene.gltf', 1000, -300, -100, 0.4, 0.3, 0.3, Math.PI / 2)
+loadModel('/model/building/scene.gltf', 1000, -300, -100, 0.4, 0.4, 0.1, Math.PI / 2)
 loadModel('/model/store/scene.gltf', 0, -60, -1500, 0.7, 0.7, 0.7, - Math.PI)
 loadModel('/model/chen/scene.gltf', 50, 40, 20, 40, 40, 40, -Math.PI / 14)
 loadModel('/model/guard/scene.gltf', -250, 54, 10, 60, 60, 60, Math.PI / 2)
@@ -280,7 +273,7 @@ const texture__4 = new THREE.VideoTexture(video__4)
 const texture__5 = new THREE.VideoTexture(video__5)
 
 function videoPlane(width, height, depth, texture, px, py, pz) {
-  const box = new THREE.BoxGeometry(width, height, depth)
+  const box = new THREE.BoxBufferGeometry(width, height, depth)
   const material = new THREE.MeshBasicMaterial({ map: texture })
   const mesh = new THREE.Mesh(box, material)
   mesh.position.set(px, py, pz)
@@ -307,13 +300,24 @@ const clock = new THREE.Clock()
 const clock2 = new THREE.Clock()
 const clock3 = new THREE.Clock()
 
+window.onresize = function () {
+
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(window.innerWidth, window.innerHeight);
+
+};
+
 function animate() {
   requestAnimationFrame(animate)
-  renderer.render(scene, camera)
+
   mixer2?.update(clock2.getDelta())
   mixer3?.update(clock3.getDelta())
   mixer?.update(clock.getDelta())
   control.update()
+
+  // renderer.render(scene, camera)
 }
 
 animate()
