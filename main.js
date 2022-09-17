@@ -36,12 +36,12 @@ control.dampingFactor = 0.5
 control.autoRotateSpeed = 2
 
 const box = new THREE.BoxGeometry(10, 10, 0.1)
-const material = new THREE.MeshStandardMaterial({ color: 0x001913, side: THREE.DoubleSide })
+const material = new THREE.MeshBasicMaterial({ color: 0x001913, side: THREE.DoubleSide })
 const mesh = new THREE.Mesh(box, material)
 mesh.rotation.x = Math.PI / 2
 
 const box2 = new THREE.BoxGeometry(100, 5, 0.1)
-const material2 = new THREE.MeshStandardMaterial({ side: THREE.DoubleSide })
+const material2 = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide })
 const mesh2 = new THREE.Mesh(box2, material2)
 mesh2.rotation.x = Math.PI / 2
 mesh2.position.set(0, 0, 8)
@@ -50,7 +50,7 @@ const txt = new THREE.TextureLoader()
 const txtload = txt.load('/img/texture.jpg')
 
 const plane_2 = new THREE.BoxGeometry(670, 670, 5)
-const material_2 = new THREE.MeshStandardMaterial({ color: 0xf7f7f7, map: txtload })
+const material_2 = new THREE.MeshBasicMaterial({ color: 0xf7f7f7, map: txtload })
 const box_2 = new THREE.Mesh(plane_2, material_2)
 box_2.position.set(0, -3, -20)
 box_2.rotateX(-Math.PI / 2)
@@ -281,7 +281,7 @@ const texture__5 = new THREE.VideoTexture(video__5)
 
 function videoPlane(width, height, depth, texture, px, py, pz) {
   const box = new THREE.BoxGeometry(width, height, depth)
-  const material = new THREE.MeshStandardMaterial({ map: texture })
+  const material = new THREE.MeshBasicMaterial({ map: texture })
   const mesh = new THREE.Mesh(box, material)
   mesh.position.set(px, py, pz)
   scene.add(mesh)
