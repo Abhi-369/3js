@@ -7,7 +7,7 @@
 // import { RectAreaLightHelper } from 'three/examples/jsm/helpers/RectAreaLightHelper'
 // import * as Stats from 'three/examples/jsm/helpers/Stats'
 
-let camera, scene, renderer, control, loader, mixer, mixer2, mixer3, audio;
+let camera, scene, renderer, control, loader, mixer, mixer2, mixer3, mixer4, audio;
 
 // const gui = new dat.GUI();
 
@@ -35,6 +35,16 @@ control.dampingFactor = 0.5
 control.autoRotateSpeed = 1
 
 control.addEventListener("change", () => renderer.render(scene, camera));
+
+const listener = new THREE.AudioListener();
+
+audio = new THREE.Audio(listener);
+
+const audioLoader = new THREE.AudioLoader()
+audioLoader.load('/music/hero.mp3', function (buffer) {
+  audio.setBuffer(buffer)
+  audio.setLoop(true);
+})
 
 // const box = new THREE.BoxBufferGeometry(10, 10, 0.1)
 // const material = new THREE.MeshBasicMaterial({ color: 0x001913, side: THREE.DoubleSide })
@@ -178,19 +188,19 @@ loader.load('/model/rida/scene.gltf', function (gltf) {
   console.log("err", error)
 })
 
-// animated boy model
-loader.load('/model/business_2/scene.gltf', function (gltf) {
+// animated girl model sitting in chair 
+loader.load('/model/lady2/scene2.glb', function (gltf) {
 
   const model = gltf.scene
   scene.add(model)
   model.rotation.y = Math.PI
   // model.scale.set(0.5, 0.5, 0.5)
-  model.scale.set(70, 70, 70)
+  model.scale.set(45, 45, 45)
 
-  model.position.set(0, -20, -700)
-  model.rotateY(Math.PI)
+  model.position.set(80, -11, 37)
+  model.rotateY(-Math.PI * 1.2)
 
-  mixer3 = new THREE.AnimationMixer(model)
+  mixer4 = new THREE.AnimationMixer(model)
 
   const clips = gltf.animations
   // console.log("clips_2", clips)
@@ -198,12 +208,7 @@ loader.load('/model/business_2/scene.gltf', function (gltf) {
   // const clip = THREE.AnimationClip.findByName(clips, "Rig|cycle_talking")
   const clip = clips[0]
 
-  // Play all animations
-  // clips.forEach(function (clip) {
-  //   mixer3.clipAction(clip).play();
-  // });
-
-  const action = mixer3.clipAction(clip)
+  const action = mixer4.clipAction(clip)
 
   action.play()
 
@@ -245,9 +250,10 @@ loadModel('/model/car/scene.gltf', 50, -300, 1900, 100, 100, 100, Math.PI)
 loadModel('/model/building/scene.gltf', 1000, -300, -100, 0.4, 0.4, 0.1, Math.PI / 2)
 loadModel('/model/store/scene.gltf', 0, -60, -1500, 0.7, 0.7, 0.7, - Math.PI)
 loadModel('/model/chen/scene.gltf', 53, 0, 20, 0.42, 0.42, 0.42, - Math.PI / 2.2)
+loadModel('/model/storeMan/scene.gltf', 0, -20, -700, 70, 70, 70)
 loadModel('/model/guard/scene.gltf', -250, 54, 10, 60, 60, 60, Math.PI / 2)
 loadModel('/model/guard/scene.gltf', 250, 55, 10, 60, 60, 60, -Math.PI / 2)
-loadModel('/model/sky/scene.gltf', -700, 20, -900, 80, 80, 80, - Math.PI / 2)
+loadModel('/model/sky/scene.gltf', -700, 20, -900, 70, 70, 70, - Math.PI / 2)
 loadModel('/model/businessman/scene.glb', -80, 0, 110, 0.45, 0.45, 0.45, -Math.PI * 1.25)
 loadModel('/model/chair/scene.gltf', -6, 2, 150, 50, 50, 50, Math.PI)
 loadModel('/model/jim/scene.gltf', -270, 0, -250, 0.5, 0.5, 0.5, Math.PI / 4)
@@ -257,8 +263,7 @@ loadModel('/model/jim/scene.gltf', -270, 0, 250, 0.5, 0.5, 0.5, Math.PI / 1.3)
 loadModel('/model/men_in_black/scene.gltf', -80, 0, 20, 4500, 4500, 4500, - Math.PI / 2)
 loadModel('/model/boss/scene.gltf', 0, 0, 0, 40, 40, 40)
 loadModel('/model/screen/scene.gltf', 56, 50, 52, 0.7, 0.7, 0.7, Math.PI)
-loadModel('/model/lady/scene.gltf', 70, 0, 40, 40, 40, 40)
-
+  
 const video__1 = document.getElementById('vid')
 const video__2 = document.getElementById('vid__2')
 const video__3 = document.getElementById('vid__3')
@@ -286,19 +291,10 @@ videoPlane(52, 31, 1.6, texture__3, 69, 70, -29)
 videoPlane(18.5, 12, 0.1, texture__4, 82, 41.5, 68.1)
 videoPlane(18.5, 12, 0.1, texture__5, -82, 41.5, 68.1)
 
-const listener = new THREE.AudioListener();
-
-audio = new THREE.Audio(listener);
-
-const audioLoader = new THREE.AudioLoader()
-audioLoader.load('/music/hero.mp3', function (buffer) {
-  audio.setBuffer(buffer)
-  audio.setLoop(true);
-})
-
 const clock = new THREE.Clock()
 const clock2 = new THREE.Clock()
 const clock3 = new THREE.Clock()
+const clock4 = new THREE.Clock()
 
 window.onresize = function () {
 
@@ -315,6 +311,7 @@ function animate() {
   mixer2?.update(clock2.getDelta())
   mixer3?.update(clock3.getDelta())
   mixer?.update(clock.getDelta())
+  mixer4?.update(clock4.getDelta())
   control.update()
 
   // renderer.render(scene, camera)
