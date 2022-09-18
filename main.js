@@ -15,7 +15,7 @@ let camera, scene, renderer, control, loader, mixer, mixer2, mixer3, audio;
 
 scene = new THREE.Scene()
 camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 2300)
-renderer = new THREE.WebGL1Renderer({ powerPreference: 'high-performance' })
+renderer = new THREE.WebGL1Renderer({ antialias: true, powerPreference: 'high-performance' })
 renderer.setSize(window.innerWidth, window.innerHeight)
 renderer.setPixelRatio(window.devicePixelRatio * 0.9)
 renderer.outputEncoding = THREE.sRGBEncoding
@@ -54,8 +54,13 @@ box_2.position.set(0, -3, -20)
 box_2.rotateX(-Math.PI / 2)
 
 const ambient = new THREE.AmbientLight(0xEFA0AA, 1.3)
-const direct = new THREE.DirectionalLight(0xA05835, 2)
-scene.add(ambient, box_2)
+// const direct = new THREE.DirectionalLight(0xA05835, 2)
+
+// for cars
+const customPoint2 = new THREE.PointLight(0xA05835, 20, 1500)
+customPoint2.position.set(-100, 320, 2030)
+
+scene.add(ambient, box_2, customPoint2)
 
 // rgbeloader for scene background
 const loader2 = new THREE.RGBELoader()
@@ -206,13 +211,9 @@ loader.load('/model/lady2/scene2.glb', function (gltf) {
 // customPoint.position.set(115, 320, 2030)
 // scene.add(customPoint)
 
-const customPoint2 = new THREE.PointLight(0xA05835, 10, 1500)
-customPoint2.position.set(-100, 320, 2030)
-scene.add(customPoint2)
-
-const customPoint3 = new THREE.PointLight(0xA05835, 10, 1500)
-customPoint3.position.set(1010, 300, 2000)
-scene.add(customPoint3)
+// const customPoint3 = new THREE.PointLight(0xA05835, 10, 1500)
+// customPoint3.position.set(1010, 300, 2000)
+// scene.add(customPoint3)
 
 // const custom = new THREE.RectAreaLight(0x534E6F, 10, 1500, 1000)
 // custom.position.set(-70, -130, 2030)
