@@ -53,7 +53,7 @@ const box_2 = new THREE.Mesh(plane_2, material_2)
 box_2.position.set(0, -3, -20)
 box_2.rotateX(-Math.PI / 2)
 
-const ambient = new THREE.AmbientLight(0xEFA0AA, 1)
+const ambient = new THREE.AmbientLight(0xEFA0AA, 1.3)
 const direct = new THREE.DirectionalLight(0xA05835, 2)
 scene.add(ambient, box_2)
 
