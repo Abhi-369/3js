@@ -15,7 +15,7 @@ let camera, scene, renderer, control, loader, mixer, mixer2, mixer3, audio;
 
 scene = new THREE.Scene()
 camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 2300)
-renderer = new THREE.WebGL1Renderer({ antialias: true, powerPreference: 'high-performance' })
+renderer = new THREE.WebGL1Renderer({ powerPreference: 'high-performance' })
 renderer.setSize(window.innerWidth, window.innerHeight)
 renderer.setPixelRatio(window.devicePixelRatio * 0.9)
 renderer.outputEncoding = THREE.sRGBEncoding
