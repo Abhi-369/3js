@@ -34,7 +34,6 @@ control.enableDamping = true
 control.dampingFactor = 0.5
 control.autoRotateSpeed = 1
 
-
 const listener = new THREE.AudioListener();
 
 audio = new THREE.Audio(listener);
@@ -54,12 +53,9 @@ const box_2 = new THREE.Mesh(plane_2, material_2)
 box_2.position.set(0, -3, -20)
 box_2.rotateX(-Math.PI / 2)
 
-const point = new THREE.PointLight(0xf7f7f7, 0.5)
-
-const ambient = new THREE.AmbientLight(0xEFA0AA, 1)
-const direct = new THREE.DirectionalLight(0xA05835, 2)
-
-scene.add(ambient, direct, point, box_2)
+const ambient = new THREE.AmbientLight(0xEFA0AA, 2)
+const direct = new THREE.DirectionalLight(0xA05835, 1)
+scene.add(ambient, box_2, direct)
 
 // rgbeloader for scene background
 const loader2 = new THREE.RGBELoader()
@@ -206,30 +202,30 @@ loader.load('/model/lady2/scene2.glb', function (gltf) {
 })
 
 // lights for cars model
-const customPoint = new THREE.PointLight(0x534E6F, 10, 1000)
-customPoint.position.set(115, 320, 2030)
+// const customPoint = new THREE.PointLight(0x534E6F, 10, 1000)
+// customPoint.position.set(115, 320, 2030)
 // scene.add(customPoint)
 
 const customPoint2 = new THREE.PointLight(0xA05835, 10, 1500)
 customPoint2.position.set(-100, 320, 2030)
-// scene.add(customPoint2)
+scene.add(customPoint2)
 
 const customPoint3 = new THREE.PointLight(0xA05835, 5, 1500)
 customPoint3.position.set(1010, 300, 2000)
-// scene.add(customPoint3)
+scene.add(customPoint3)
 
-const custom = new THREE.RectAreaLight(0x534E6F, 10, 1500, 1000)
-custom.position.set(-70, -130, 2030)
+// const custom = new THREE.RectAreaLight(0x534E6F, 10, 1500, 1000)
+// custom.position.set(-70, -130, 2030)
 // scene.add(custom)
-custom.rotateX(-Math.PI / 2)
+// custom.rotateX(-Math.PI / 2)
 
-const helper = new THREE.PointLightHelper(customPoint3, 100)
+// const helper = new THREE.SpotLightHelper(customPoint3, 100)
 // scene.add(helper)
 
-// gui.add(customPoint3.position, 'x')
-// gui.add(customPoint3.position, 'y').step(10)
-// gui.add(customPoint3.position, 'z')
-// gui.add(customPoint3, 'intensity')
+// gui.add(spot.position, 'x')
+// gui.add(spot.position, 'y').step(10)
+// gui.add(spot.position, 'z')
+// gui.add(spot, 'intensity')
 
 loadModel('/model/office/scene.glb', 0, 0, 0, 1, 1, 1, 0)
 loadModel('/model/car_roof/scene.glb', 10, -200, 1500, 200, 200, 150, -Math.PI)
@@ -275,8 +271,8 @@ function videoPlane(width, height, depth, texture, px, py, pz) {
 videoPlane(59, 31, 1.6, texture__1, -70, 70, -29)
 videoPlane(21, 14, 0.1, texture__2, 56, 57, 52)
 videoPlane(52, 31, 1.6, texture__3, 69, 70, -29)
-videoPlane(18.5, 12, 0.2, texture__4, 82, 41.5, 68.09)
-videoPlane(18, 12, 0.2, texture__5, -81.7, 41.5, 68.2)
+videoPlane(18.5, 12, 0.2, texture__4, 82, 41.5, 68)
+videoPlane(18, 12, 0.2, texture__5, -81.7, 41.5, 68.1)
 
 const clock = new THREE.Clock()
 const clock2 = new THREE.Clock()
