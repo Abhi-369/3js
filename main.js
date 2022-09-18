@@ -7,7 +7,7 @@
 // import { RectAreaLightHelper } from 'three/examples/jsm/helpers/RectAreaLightHelper'
 // import * as Stats from 'three/examples/jsm/helpers/Stats'
 
-let camera, scene, renderer, control, loader, mixer, mixer2, mixer3, mixer4, audio;
+let camera, scene, renderer, control, loader, mixer, mixer2, mixer3, audio;
 
 // const gui = new dat.GUI();
 
@@ -17,10 +17,10 @@ scene = new THREE.Scene()
 camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 2300)
 renderer = new THREE.WebGL1Renderer({ powerPreference: 'high-performance' })
 renderer.setSize(window.innerWidth, window.innerHeight)
-renderer.setPixelRatio(window.devicePixelRatio)
+renderer.setPixelRatio(window.devicePixelRatio * 0.9)
 renderer.outputEncoding = THREE.sRGBEncoding
 renderer.toneMapping = THREE.ACESFilmicToneMapping
-renderer.toneMappingExposure = 1
+renderer.toneMappingExposure = 1.1
 document.body.appendChild(renderer.domElement)
 
 camera.position.set(0, 300, 500)
@@ -200,7 +200,7 @@ loader.load('/model/lady2/scene2.glb', function (gltf) {
   model.position.set(80, -11, 37)
   model.rotateY(-Math.PI * 1.2)
 
-  mixer4 = new THREE.AnimationMixer(model)
+  mixer3 = new THREE.AnimationMixer(model)
 
   const clips = gltf.animations
   // console.log("clips_2", clips)
@@ -208,7 +208,7 @@ loader.load('/model/lady2/scene2.glb', function (gltf) {
   // const clip = THREE.AnimationClip.findByName(clips, "Rig|cycle_talking")
   const clip = clips[0]
 
-  const action = mixer4.clipAction(clip)
+  const action = mixer3.clipAction(clip)
 
   action.play()
 
@@ -263,7 +263,7 @@ loadModel('/model/jim/scene.gltf', -270, 0, 250, 0.5, 0.5, 0.5, Math.PI / 1.3)
 loadModel('/model/men_in_black/scene.gltf', -80, 0, 20, 4500, 4500, 4500, - Math.PI / 2)
 loadModel('/model/boss/scene.gltf', 0, 0, 0, 40, 40, 40)
 loadModel('/model/screen/scene.gltf', 56, 50, 52, 0.7, 0.7, 0.7, Math.PI)
-  
+
 const video__1 = document.getElementById('vid')
 const video__2 = document.getElementById('vid__2')
 const video__3 = document.getElementById('vid__3')
@@ -294,7 +294,6 @@ videoPlane(18.5, 12, 0.1, texture__5, -82, 41.5, 68.1)
 const clock = new THREE.Clock()
 const clock2 = new THREE.Clock()
 const clock3 = new THREE.Clock()
-const clock4 = new THREE.Clock()
 
 window.onresize = function () {
 
@@ -309,9 +308,8 @@ function animate() {
   requestAnimationFrame(animate)
 
   mixer2?.update(clock2.getDelta())
-  mixer3?.update(clock3.getDelta())
   mixer?.update(clock.getDelta())
-  mixer4?.update(clock4.getDelta())
+  mixer3?.update(clock3.getDelta())
   control.update()
 
   // renderer.render(scene, camera)
