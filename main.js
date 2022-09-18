@@ -288,8 +288,8 @@ function videoPlane(width, height, depth, texture, px, py, pz) {
 videoPlane(59, 31, 1.6, texture__1, -70, 70, -29)
 videoPlane(21, 14, 0.1, texture__2, 56, 57, 52)
 videoPlane(52, 31, 1.6, texture__3, 69, 70, -29)
-videoPlane(18.5, 12, 0.1, texture__4, 82, 41.5, 68.1)
-videoPlane(18.5, 12, 0.1, texture__5, -82, 41.5, 68.1)
+videoPlane(18.5, 12, 0.2, texture__4, 82, 41.5, 68.09)
+videoPlane(18, 12, 0.2, texture__5, -81.7, 41.5, 68.2)
 
 const clock = new THREE.Clock()
 const clock2 = new THREE.Clock()
