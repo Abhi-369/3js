@@ -53,9 +53,9 @@ const box_2 = new THREE.Mesh(plane_2, material_2)
 box_2.position.set(0, -3, -20)
 box_2.rotateX(-Math.PI / 2)
 
-const ambient = new THREE.AmbientLight(0xEFA0AA, 2)
-const direct = new THREE.DirectionalLight(0xA05835, 1)
-scene.add(ambient, box_2, direct)
+const ambient = new THREE.AmbientLight(0xEFA0AA, 1)
+const direct = new THREE.DirectionalLight(0xA05835, 2)
+scene.add(ambient, box_2)
 
 // rgbeloader for scene background
 const loader2 = new THREE.RGBELoader()
@@ -210,7 +210,7 @@ const customPoint2 = new THREE.PointLight(0xA05835, 10, 1500)
 customPoint2.position.set(-100, 320, 2030)
 scene.add(customPoint2)
 
-const customPoint3 = new THREE.PointLight(0xA05835, 5, 1500)
+const customPoint3 = new THREE.PointLight(0xA05835, 10, 1500)
 customPoint3.position.set(1010, 300, 2000)
 scene.add(customPoint3)
 
