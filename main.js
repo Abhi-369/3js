@@ -34,7 +34,6 @@ control.enableDamping = true
 control.dampingFactor = 0.5
 control.autoRotateSpeed = 1
 
-control.addEventListener("change", () => renderer.render(scene, camera));
 
 const listener = new THREE.AudioListener();
 
@@ -46,32 +45,21 @@ audioLoader.load('/music/hero.mp3', function (buffer) {
   audio.setLoop(true);
 })
 
-// const box = new THREE.BoxBufferGeometry(10, 10, 0.1)
-// const material = new THREE.MeshBasicMaterial({ color: 0x001913, side: THREE.DoubleSide })
-// const mesh = new THREE.Mesh(box, material)
-// mesh.rotation.x = Math.PI / 2
-
-// const box2 = new THREE.BoxBufferGeometry(100, 5, 0.1)
-// const material2 = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide })
-// const mesh2 = new THREE.Mesh(box2, material2)
-// mesh2.rotation.x = Math.PI / 2
-// mesh2.position.set(0, 0, 8)
-
 const txt = new THREE.TextureLoader()
 const txtload = txt.load('/img/texture.jpg')
 
 const plane_2 = new THREE.BoxBufferGeometry(670, 670, 5)
-const material_2 = new THREE.MeshBasicMaterial({ color: 0xD5CEE4, map: txtload })
+const material_2 = new THREE.MeshBasicMaterial({ color: 0x546862 })
 const box_2 = new THREE.Mesh(plane_2, material_2)
 box_2.position.set(0, -3, -20)
 box_2.rotateX(-Math.PI / 2)
 
-scene.add(box_2)
+const point = new THREE.PointLight(0xf7f7f7, 0.5)
 
 const ambient = new THREE.AmbientLight(0xEFA0AA, 1)
+const direct = new THREE.DirectionalLight(0xA05835, 2)
 
-const point = new THREE.PointLight(0xC6C6A7, 1)
-scene.add(ambient, point)
+scene.add(ambient, direct, point, box_2)
 
 // rgbeloader for scene background
 const loader2 = new THREE.RGBELoader()
@@ -133,7 +121,6 @@ function loadModel(path, px, py, pz, sx, sy, sz, rotate) {
     console.log("err", error)
   })
 }
-
 
 // animated girl model
 loader.load('/model/talk/scene.gltf', function (gltf) {
@@ -221,19 +208,19 @@ loader.load('/model/lady2/scene2.glb', function (gltf) {
 // lights for cars model
 const customPoint = new THREE.PointLight(0x534E6F, 10, 1000)
 customPoint.position.set(115, 320, 2030)
-scene.add(customPoint)
+// scene.add(customPoint)
 
 const customPoint2 = new THREE.PointLight(0xA05835, 10, 1500)
 customPoint2.position.set(-100, 320, 2030)
-scene.add(customPoint2)
+// scene.add(customPoint2)
 
 const customPoint3 = new THREE.PointLight(0xA05835, 5, 1500)
 customPoint3.position.set(1010, 300, 2000)
-scene.add(customPoint3)
+// scene.add(customPoint3)
 
 const custom = new THREE.RectAreaLight(0x534E6F, 10, 1500, 1000)
 custom.position.set(-70, -130, 2030)
-scene.add(custom)
+// scene.add(custom)
 custom.rotateX(-Math.PI / 2)
 
 const helper = new THREE.PointLightHelper(customPoint3, 100)
@@ -312,7 +299,7 @@ function animate() {
   mixer3?.update(clock3.getDelta())
   control.update()
 
-  // renderer.render(scene, camera)
+  renderer.render(scene, camera)
 }
 
 animate()
